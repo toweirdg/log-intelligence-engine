@@ -37,6 +37,14 @@ This system ingests logs, processes them asynchronously, uses AI to generate ins
 * Dashboard (Kibana-like)
 * Advanced anomaly detection
 
+## Progress Log
+
+### Day 1
+- Setup FastAPI project
+- Created /logs endpoint
+- Verified via Swagger UI
+
+  
 ## Author
 
 Gulshan Kumar
