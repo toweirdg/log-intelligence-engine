@@ -60,9 +60,9 @@ Client → FastAPI → PostgreSQL
 ---
 
 ## Setup Instructions
-
+```
 ### 1. Clone the Repository
-```bash
+
 
 git clone https://github.com/YOUR_USERNAME/log-intelligence-engine.git
 cd log-intelligence-engine
