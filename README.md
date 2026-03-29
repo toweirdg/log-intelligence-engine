@@ -84,7 +84,7 @@ Celery Worker (Processing)
 ### 1. Clone the Repository
 
 
-git clone https://github.com/YOUR_USERNAME/log-intelligence-engine.git
+git clone https://github.com/toweirdg/log-intelligence-engine.git
 cd log-intelligence-engine
 
 ### 2. Create Virtual Environment
