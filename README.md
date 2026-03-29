@@ -50,21 +50,21 @@ Celery Worker (Processing)
 
 ---
 
-## 🛠️ Tech Stack
+### 🛠️ Tech Stack
 
-```Core Backend```
+##Core Backend
 * Python
 * FastAPI
 * SQLAlchemy
 
-```Database```
+##Database
 * PostgreSQL
 
-```Async Processing```
+##Async Processing
 * Redis (message broker)
 * Celery (background worker)
 
-```Dev Tools```
+##Dev Tools
 * Git & GitHub
 
 ---
@@ -80,11 +80,11 @@ Celery Worker (Processing)
 ---
 
 ## Setup Instructions
-```
+
 ### 1. Clone the Repository
 
 
-git clone https://github.com/YOUR_USERNAME/log-intelligence-engine.git
+git clone https://github.com/toweirdg/log-intelligence-engine.git
 cd log-intelligence-engine
 
 ### 2. Create Virtual Environment
@@ -110,16 +110,16 @@ REDIS_URL=redis://localhost:6379/0
 ### 5. Start Services
 
 * Start Redis
-```redis-server.exe```
+ --redis-server.exe
 * Start FastAPI
-```uvicorn app.main:app --reload```
+ --uvicorn app.main:app --reload
 * Start Celery Worker(Windows Fix)
-```celery -A app.workers.celery_app worker --pool=solo --loglevel=info```
+ --celery -A app.workers.celery_app worker --pool=solo --loglevel=info
 
 ---
 
 ###🧪 API Usage
-POST /logs```
+POST /logs
 {
   "message": "Database connection error",
   "level": "ERROR"
@@ -127,6 +127,6 @@ POST /logs```
 
 ---
 ## 📌 Author
-```
+
 Gulshan Kumar
 
