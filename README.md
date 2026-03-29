@@ -59,14 +59,24 @@ Client → FastAPI → PostgreSQL
 
 ---
 
-## ▶️ How to Run
+## Setup Instructions
 
-```
-uvicorn app.main:app --reload
-```
----
+### 1. Clone the Repository
+```bash
 
-## Environment Variables
+git clone https://github.com/YOUR_USERNAME/log-intelligence-engine.git
+cd log-intelligence-engine
+
+### 2. Create Virtual Environment
+
+python -m venv venv
+venv\Scripts\activate   # Windows 
+
+### 3. Install Dependencies
+
+pip install -r requirements.txt
+
+### 4. Environment Variables
 
 Create a `.env` file in the root directory and configure the following:
 
@@ -74,6 +84,13 @@ Create a `.env` file in the root directory and configure the following:
 DATABASE_URL=postgresql://username:password@localhost:5432/log_engine
 OPENAI_API_KEY=your_api_key_here
 REDIS_URL=redis://localhost:6379/0
+
+
+### 5. Run the Server
+
+uvicorn app.main:app --reload
+```
+---
 
 ## 📌 Author
 
