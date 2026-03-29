@@ -1,6 +1,6 @@
 # Log Intelligence Engine 🚀
 
-AI-powered backend system to analyze logs, detect anomalies, and automate operational decisions.
+AI-powered backend system to analyze logs, detect anomalies, and automate operational decisions using asynchronous processing and AI.
 
 ---
 
@@ -8,54 +8,74 @@ AI-powered backend system to analyze logs, detect anomalies, and automate operat
 
 Modern systems generate massive volumes of logs. Engineers often struggle to:
 
-* Detect issues quickly
-* Identify root causes
-* Respond before downtime escalates
+* Detect issues in real-time
+* Identify root causes quickly
+* Prevent downtime before escalates
 
 ---
 
 ## 💡 Solution
 
-This project provides a backend system that:
+This project provides a scalable backend that:
 
 * Ingests logs via API
-* Stores them in a structured database
-* Processes them asynchronously (next phase)
-* Uses AI to generate insights and decisions
+* Stores them in PostgreSQL
+* Processes logs asynchronously using Celery + Redis
+* Prepares logs for AI-based analysis and decision-making
 
 ---
 
-## ⚙️ Current Features (Phase 1–2)
+## ⚙️ Current Features (Phase 1–3)
 
-* ✅ FastAPI backend setup
+* ✅ FastAPI backend
 * ✅ PostgreSQL integration
 * ✅ Log ingestion API (`/logs`)
-* ✅ Database persistence using SQLAlchemy
+* ✅ SQLAlchemy ORM models
+* ✅ Asynchronous processing using Celery + Redis
+* ✅ Background task execution for log analysis
 
 ---
 
 ## 🏗️ Architecture (Current)
 
-Client → FastAPI → PostgreSQL
+Client 
+   ↓
+FastAPI (API Layer) 
+   ↓ 
+PostgreSQL (Storage) 
+   ↓ 
+Redis (Queue) 
+   ↓ 
+Celery Worker (Processing)
 
 ---
 
 ## 🛠️ Tech Stack
 
+```Core Backend```
 * Python
 * FastAPI
-* PostgreSQL
 * SQLAlchemy
-* Git
+
+```Database```
+* PostgreSQL
+
+```Async Processing```
+* Redis (message broker)
+* Celery (background worker)
+
+```Dev Tools```
+* Git & GitHub
 
 ---
 
 ## 🚧 Upcoming Features
 
-* Async processing with Celery + Redis
-* Log classification & anomaly detection
-* AI-based root cause analysis
-* Decision engine for automated actions
+* AI-powered log analysis (LLM integration)
+* Root cause detection
+* Anomally detection system
+* Automated decision engine (self-healing action)
+* Alerting system 
 
 ---
 
@@ -80,19 +100,33 @@ pip install -r requirements.txt
 
 Create a `.env` file in the root directory and configure the following:
 
-```env
+
 DATABASE_URL=postgresql://username:password@localhost:5432/log_engine
 OPENAI_API_KEY=your_api_key_here
 REDIS_URL=redis://localhost:6379/0
 
-
-### 5. Run the Server
-
-uvicorn app.main:app --reload
-```
 ---
 
-## 📌 Author
+### 5. Start Services
 
+* Start Redis
+```redis-server.exe```
+* Start FastAPI
+```uvicorn app.main:app --reload```
+* Start Celery Worker(Windows Fix)
+```celery -A app.workers.celery_app worker --pool=solo --loglevel=info```
+
+---
+
+###🧪 API Usage
+POST /logs```
+{
+  "message": "Database connection error",
+  "level": "ERROR"
+}
+
+---
+## 📌 Author
+```
 Gulshan Kumar
 
