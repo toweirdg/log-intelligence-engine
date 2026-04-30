@@ -10,3 +10,6 @@ class Log(Base):
 	level = Column(String, default="INFO")
 	timestamp = Column(DateTime, default=datetime.utcnow)
 	status = Column(String, default="pending")
+	analysis = Column(String, nullable=True)
+	pattern = Column(String, nullable=True)
+	action = Column(String, nullable=True)
