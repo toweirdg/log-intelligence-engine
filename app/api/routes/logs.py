@@ -25,21 +25,21 @@ def create_log(log: LogCreate, db: Session = Depends(get_db)):
 	try :
 		new_log = Log(
 			message=log.message,
-			level=log.level
+			level=log.level,
 			status="pending"
-		)
+			)
 		
   
 		db.add(new_log)
-    		db.commit()
-    		db.refresh(new_log)
+		db.commit()
+		db.refresh(new_log)
 
-    		process_log.delay(new_log.id, new_log.message)
+		process_log.delay(new_log.id, new_log.message)
 
-    		return {
-        		"id": new_log.id,
-        		"status": "queued",
-    		}
+		return{
+			"id": new_log.id,
+        	"status": "queued",
+    	}
 
 	except Exception as e:
 		raise HTTPException(status_code=500, detail=str(e))
@@ -51,16 +51,16 @@ def get_log(log_id: int, db: Session = Depends(get_db)):
     log = db.query(Log).filter(Log.id == log_id).first()
 
     if not log:
-        return {"error": "Log not found"}
+        raise HTTPException(status_code=404, details="Log not found")
 
     return {
         "id": log.id,
         "message": log.message,
         "level": log.level,
         "status": log.status,
-	"pattern": log.pattern,
-	"action": log.action,
-	"analysis": log.analysis
+		"pattern": log.pattern,
+		"action": log.action,
+		"analysis": log.analysis
     }
 
 @router.get("/logs")
@@ -71,6 +71,6 @@ def list_logs(status: str = None, db: Session = Depends(get_db)):
 	if status:
 		query = query.filter(Log.status == status)
 
-	log = query.all()
+	logs = query.all()
 
 	return logs
